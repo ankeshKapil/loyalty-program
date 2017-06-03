@@ -1,0 +1,61 @@
+
+<div *ngIf="driver">
+    <h2><span>Driver</span> {{driver.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Card Number</span></dt>
+        <dd>
+            <span>{{driver.cardNumber}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{driver.name}}</span>
+        </dd>
+        <dt><span>Phone Number</span></dt>
+        <dd>
+            <span>{{driver.phoneNumber}}</span>
+        </dd>
+        <dt><span>Created On</span></dt>
+        <dd>
+            <span>{{driver.createdOn | date:'medium'}}</span>
+        </dd>
+        <dt><span>Updated On</span></dt>
+        <dd>
+            <span>{{driver.updatedOn | date:'medium'}}</span>
+        </dd>
+        <dt><span>Id Card Type</span></dt>
+        <dd>
+            <span>{{driver.idCardType}}</span>
+        </dd>
+        <dt><span>Id Card Number</span></dt>
+        <dd>
+            <span>{{driver.idCardNumber}}</span>
+        </dd>
+        <dt><span>Vehicle Number</span></dt>
+        <dd>
+            <span>{{driver.vehicleNumber}}</span>
+        </dd>
+        <dt><span>Address</span></dt>
+        <dd>
+            <span>{{driver.address}}</span>
+        </dd>
+        <dt><span>Common Routes</span></dt>
+        <dd>
+            <span>{{driver.commonRoutes}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'driver/'+ driver.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
