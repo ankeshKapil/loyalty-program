@@ -23,10 +23,10 @@ public class DriverDTO implements Serializable {
     @Size(min = 10, max = 10)
     private String phoneNumber;
 
-    @NotNull
+   
     private ZonedDateTime createdOn;
 
-    @NotNull
+   
     private ZonedDateTime updatedOn;
 
     private String idCardType;

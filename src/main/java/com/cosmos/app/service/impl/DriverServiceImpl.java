@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -34,13 +35,19 @@ public class DriverServiceImpl implements DriverService{
 
     /**
      * Save a driver.
-     *
+     * Before converting to Driver Entity 
+     * Setting createdOn date and updatedOn date
+     * to Current Date
      * @param driverDTO the entity to save
      * @return the persisted entity
      */
     @Override
     public DriverDTO save(DriverDTO driverDTO) {
         log.debug("Request to save Driver : {}", driverDTO);
+        if(driverDTO.getId()==null){
+            driverDTO.setCreatedOn(ZonedDateTime.now());
+        }
+        driverDTO.setUpdatedOn(ZonedDateTime.now());
         Driver driver = driverMapper.toEntity(driverDTO);
         driver = driverRepository.save(driver);
         DriverDTO result = driverMapper.toDto(driver);
@@ -75,6 +82,7 @@ public class DriverServiceImpl implements DriverService{
         DriverDTO driverDTO = driverMapper.toDto(driver);
         return driverDTO;
     }
+    
 
     /**
      *  Delete the  driver by id.
@@ -86,4 +94,21 @@ public class DriverServiceImpl implements DriverService{
         log.debug("Request to delete Driver : {}", id);
         driverRepository.delete(id);
     }
+    
+    
+    
+    /**
+     * find driver by the cardNumber.
+     * 
+     */
+	@Override
+	@Transactional(readOnly = true)
+	public DriverDTO findByCardNumber(Long cardNumber) {
+		 log.debug("Request to get Driver : {}", cardNumber);
+	        Driver driver = driverRepository.findByCardNumber(cardNumber);
+	        DriverDTO driverDTO = driverMapper.toDto(driver);
+	        return driverDTO;
+	}
+   
+    
 }

@@ -16,7 +16,7 @@
             <label class="form-control-label" for="field_cardNumber">Card Number</label>
             <input type="number" class="form-control" name="cardNumber" id="field_cardNumber"
                 [(ngModel)]="driver.cardNumber"
-            required />
+            required pattern="^[1-9]+[0-9]*$" />
             <div [hidden]="!(editForm.controls.cardNumber?.dirty && editForm.controls.cardNumber?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.cardNumber?.errors?.required">
@@ -24,7 +24,11 @@
                 </small>
                 <small class="form-text text-danger"
                     [hidden]="!editForm.controls.cardNumber?.errors?.number">
-                    This field should be a number.
+                    This field should be a positive number.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.cardNumber?.errors?.pattern">
+                    This field should be a positive number.
                 </small>
             </div>
         </div>
@@ -60,7 +64,7 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" for="field_createdOn">Created On</label>
             <div class="d-flex">
                 <input id="field_createdOn" type="datetime-local" class="form-control" name="createdOn" [(ngModel)]="driver.createdOn"
@@ -93,7 +97,7 @@
                     This field should be a date and time.
                 </small>
             </div>
-        </div>
+        </div>-->
         <div class="form-group">
             <label class="form-control-label" for="field_idCardType">Id Card Type</label>
             <input type="text" class="form-control" name="idCardType" id="field_idCardType"

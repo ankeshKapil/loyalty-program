@@ -16,7 +16,7 @@
         <dd>
             <span>{{transaction.amount}}</span>
         </dd>
-        <dt><span>Driver</span></dt>
+        <dt><span>Card Number</span></dt>
         <dd>
             <div *ngIf="transaction.driverId">
                 <a [routerLink]="['/driver', transaction.driverId]">{{transaction.driverCardNumber}}</a>

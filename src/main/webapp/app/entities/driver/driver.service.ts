@@ -66,9 +66,8 @@ export class DriverService {
 
     private convert(driver: Driver): Driver {
         const copy: Driver = Object.assign({}, driver);
-
+        // will update at server side with server date
         copy.createdOn = this.dateUtils.toDate(driver.createdOn);
-
         copy.updatedOn = this.dateUtils.toDate(driver.updatedOn);
         return copy;
     }

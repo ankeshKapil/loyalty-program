@@ -32,6 +32,14 @@ public interface DriverService {
      *  @return the entity
      */
     DriverDTO findOne(Long id);
+    
+    
+    /**
+     * Get the "cardNumber" driver.
+     * @param cardNumber
+     * @return
+     */
+    DriverDTO findByCardNumber(Long cardNumber);
 
     /**
      *  Delete the "id" driver.

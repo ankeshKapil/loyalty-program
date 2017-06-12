@@ -124,5 +124,19 @@ public class DriverResource {
         driverService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    /**
+     * GET  /drivers/ : get the "cardNumber" driver.
+     *
+     * @param cardNumber the cardNumber of the driverDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the driverDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/drivers/search")
+    @Timed
+    public ResponseEntity<DriverDTO> getDriverByCardNumber(@RequestParam(value="cardNumber") Long cardNumber) {
+        log.debug("REST request to get Driver : {}", cardNumber);
+        DriverDTO driverDTO = driverService.findByCardNumber(cardNumber);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(driverDTO));
+    }
 
 }
