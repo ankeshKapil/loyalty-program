@@ -33,7 +33,7 @@ public class SchemeResource {
     private final Logger log = LoggerFactory.getLogger(SchemeResource.class);
 
     private static final String ENTITY_NAME = "scheme";
-        
+
     private final SchemeService schemeService;
 
     public SchemeResource(SchemeService schemeService) {
@@ -49,7 +49,7 @@ public class SchemeResource {
      */
     @PostMapping("/schemes")
     @Timed
-    public ResponseEntity<SchemeDTO> createScheme(@Valid @RequestBody SchemeDTO schemeDTO) throws URISyntaxException {
+    public ResponseEntity<SchemeDTO> createScheme(@Valid @RequestBody SchemeDTO schemeDTO) throws URISyntaxException,Exception {
         log.debug("REST request to save Scheme : {}", schemeDTO);
         if (schemeDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new scheme cannot already have an ID")).body(null);
@@ -71,7 +71,7 @@ public class SchemeResource {
      */
     @PutMapping("/schemes")
     @Timed
-    public ResponseEntity<SchemeDTO> updateScheme(@Valid @RequestBody SchemeDTO schemeDTO) throws URISyntaxException {
+    public ResponseEntity<SchemeDTO> updateScheme(@Valid @RequestBody SchemeDTO schemeDTO) throws URISyntaxException,Exception {
         log.debug("REST request to update Scheme : {}", schemeDTO);
         if (schemeDTO.getId() == null) {
             return createScheme(schemeDTO);

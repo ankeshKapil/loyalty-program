@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ import java.util.List;
 public class TransactionServiceImpl implements TransactionService{
 
     private final Logger log = LoggerFactory.getLogger(TransactionServiceImpl.class);
-    
+
     private final TransactionRepository transactionRepository;
 
     private final TransactionMapper transactionMapper;
@@ -41,6 +42,7 @@ public class TransactionServiceImpl implements TransactionService{
     @Override
     public TransactionDTO save(TransactionDTO transactionDTO) {
         log.debug("Request to save Transaction : {}", transactionDTO);
+        transactionDTO.setTime(ZonedDateTime.now());
         Transaction transaction = transactionMapper.toEntity(transactionDTO);
         transaction = transactionRepository.save(transaction);
         TransactionDTO result = transactionMapper.toDto(transaction);
@@ -49,7 +51,7 @@ public class TransactionServiceImpl implements TransactionService{
 
     /**
      *  Get all the transactions.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */

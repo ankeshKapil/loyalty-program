@@ -39,6 +39,8 @@ public class DriverDTO implements Serializable {
     private String address;
 
     private String commonRoutes;
+    
+    
 
     public Long getId() {
         return id;

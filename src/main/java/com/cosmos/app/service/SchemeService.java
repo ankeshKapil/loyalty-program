@@ -15,11 +15,11 @@ public interface SchemeService {
      * @param schemeDTO the entity to save
      * @return the persisted entity
      */
-    SchemeDTO save(SchemeDTO schemeDTO);
+    SchemeDTO save(SchemeDTO schemeDTO) throws Exception;
 
     /**
      *  Get all the schemes.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */

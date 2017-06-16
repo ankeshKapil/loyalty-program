@@ -15,7 +15,7 @@ public class TransactionDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
+
     private ZonedDateTime time;
 
     @NotNull
